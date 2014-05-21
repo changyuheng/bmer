@@ -16,6 +16,7 @@ import os
 import sys
 import docopt
 import re
+import json
 
 config = {
         'dir'       : os.path.join(os.environ['HOME'], '.config', 'bmer'),
@@ -30,14 +31,14 @@ def parse_conf():
     if not os.path.exists(config['conf']):
         return None
 
-    return eval(open(config['conf']).read())
+    return json.loads(open(config['conf']).read())
 
 
 def parse_installed():
     if not os.path.exists(config['installed']):
         return None
 
-    return eval(open(config['installed']).read())
+    return json.loads(open(config['installed']).read())
 
 def install(path, alias):
     global conf, installed
@@ -61,7 +62,7 @@ def install(path, alias):
         installed[symName] = abspath
 
         with open(config['installed'], 'w') as fi:
-            fi.write(str(installed))
+            fi.write(json.dumps(installed, indent=4))
     except OSError as e:
         print(despath + ' exists')
         raise e
@@ -77,7 +78,7 @@ def remove(name):
 
         installed.pop(name)
         with open(config['installed'], 'w') as fi:
-            fi.write(str(installed))
+            fi.write(json.dumps(installed, indent=4))
     except OSError as e:
         raise e
 
