@@ -1,6 +1,6 @@
 bmer
 ----
-a command line user ofen use scripts for productive, so they may write their own or
+a command line user often use scripts for productive, so they may write their own or
 download from someone else, and copy or link the script to $HOME/bin or somewhere
 list in the $PATH manually.
 
