@@ -105,7 +105,7 @@ def main():
             display_installed()
     except Exception as e:
         print(e)
-        exit(1)
+        return 1
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())
